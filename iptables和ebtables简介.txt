@@ -1,0 +1,15 @@
+ebtables：
+	与iptables类似，都是Linux中的网络数据包过滤配置工具。
+	工作在数据链路层，是以太网的防火墙
+	有多个表和链
+	表：filter(default), nat, broute
+		nat用于转换MAC地址，broute用于以太网桥过滤
+	链：PREROUTING、INPUT、FORWARD、POSTROUTING、OUTPUT
+	ebtables每个阶段的过滤时机都比iptables早，但并不绝对，从本机上层来的数据经过POSTROUTING，iptables要早过滤
+	
+	规则也称target：ACCEPT、DROP、RETURN、CONTUNE
+	RETURN指停止遍历此链，并在前一个调用链的下一条规则中恢复
+	参数中 -p指明可以使用的协议类型，在/etc/ethertypes中，是指一些二层包的类型
+	-ip-proto:IP包的类型，在/etc/protocols中详细说明
+ebtables is an application program used to set up and maintain the tables of rules (inside the Linux kernel) that inspect Ethernet frames. It is analogous to the iptables application, but less complicated, due to the fact that the Ethernet protocol is much simpler than the IP protocol.
+	
